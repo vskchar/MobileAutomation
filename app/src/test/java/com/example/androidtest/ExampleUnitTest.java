@@ -42,7 +42,6 @@ public class ExampleUnitTest extends LaunchApp {
         LogIn login = new LogIn(driver,logger);
         login.loginToNaukri();
     }
- 
     @AfterTest
     public void TearDown(){
         extent.flush();
