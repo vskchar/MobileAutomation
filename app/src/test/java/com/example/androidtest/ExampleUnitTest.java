@@ -36,7 +36,6 @@ public class ExampleUnitTest extends LaunchApp {
 
     @Test
     public void TC_1() throws MalformedURLException, InterruptedException {
-
         setUp();
         logger = extent.createTest("Login To Naukri");
         LogIn login = new LogIn(driver,logger);
