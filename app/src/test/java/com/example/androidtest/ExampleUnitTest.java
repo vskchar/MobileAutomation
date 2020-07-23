@@ -5,7 +5,10 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.microsoft.appcenter.espresso.Factory;
+import com.microsoft.appcenter.espresso.ReportHelper;
 
+import org.junit.Rule;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -15,15 +18,13 @@ import java.net.MalformedURLException;
 import pages.LogIn;
 import utility.LaunchApp;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+
 public class ExampleUnitTest extends LaunchApp {
     ExtentHtmlReporter htmlReporter = null;
     ExtentReports extent = null;
     ExtentTest logger = null;
+    @Rule
+    public ReportHelper reportHelper = Factory.getReportHelper();
 
     @BeforeTest
     public void startReports() {
@@ -41,8 +42,10 @@ public class ExampleUnitTest extends LaunchApp {
         LogIn login = new LogIn(driver,logger);
         login.loginToNaukri();
     }
+ 
     @AfterTest
-    public void endReport(){
+    public void TearDown(){
         extent.flush();
+        reportHelper.label("Stopping App");
     }
 }
